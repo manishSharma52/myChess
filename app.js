@@ -11,7 +11,7 @@ const io = socket(server);
 
 const chess = new Chess();
 let players = {};
-let currentPlayer = "W";
+let currentPlayer = "w";
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -25,10 +25,10 @@ io.on("connection", (uniquesocket) => {
 
   if (!players.white) {
     players.white = uniquesocket.id;
-    uniquesocket.emit("playerRole", "W");
+    uniquesocket.emit("playerRole", "w");
   } else if (!players.black) {
     players.black = uniquesocket.id;
-    uniquesocket.emit("playerRole", "B");
+    uniquesocket.emit("playerRole", "b");
   } else {
     uniquesocket.emit("spectatorRole");
   }
@@ -42,8 +42,8 @@ io.on("connection", (uniquesocket) => {
 
   uniquesocket.on("move", (move) => {
     try {
-      if (chess.turn() === "W" && uniquesocket.id !== players.white) return;
-      if (chess.turn() === "B" && uniquesocket.id !== players.black) return;
+      if (chess.turn() === "w" && uniquesocket.id !== players.white) return;
+      if (chess.turn() === "b" && uniquesocket.id !== players.black) return;
 
       const result = chess.move(move);
 
