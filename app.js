@@ -5,7 +5,7 @@ const { Chess } = require("chess.js");
 const path = require("path");
 
 const app = express();
-const port = 3000;
+const port = 5000;
 const server = http.createServer(app);
 const io = socket(server);
 
@@ -63,5 +63,5 @@ io.on("connection", (uniquesocket) => {
 });
 
 server.listen(port, () => {
-  console.log("is bar bhi chal gya");
+  console.log("Bolo juva keshari");
 });
